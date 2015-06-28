@@ -1,0 +1,45 @@
+buildscript {
+  repositories {
+    jcenter()
+  }
+  dependencies {
+    classpath 'io.ratpack:ratpack-gradle:0.9.15'
+    classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.1'
+  }
+}
+
+def jvmEncoding = java.nio.charset.Charset.defaultCharset().name()
+if (jvmEncoding != "UTF-8") {
+  throw new IllegalStateException("Build environment must be UTF-8 (it is: $jvmEncoding) - add '-Dfile.encoding=UTF-8' to the GRADLE_OPTS environment variable ")
+}
+
+if (!JavaVersion.current().java8Compatible) {
+  throw new IllegalStateException("Must be built with Java 8 or higher")
+}
+
+task wrapper(type: Wrapper) {
+  gradleVersion = "2.4"
+}
+
+allprojects {
+  group = "com.charlieknudsen.hopscotch"
+  version = "0.0.1-SNAPSHOT"
+
+  apply plugin: "base"
+  apply plugin: "idea"
+  apply plugin: "java"
+
+  sourceCompatibility = "1.8"
+  targetCompatibility = "1.8"
+
+  repositories {
+    jcenter()
+  }
+}
+
+ext {
+  isSnapshot = version.endsWith("SNAPSHOT")
+  isTravis = System.getenv("TRAVIS") != null
+  isCloudCi = System.getenv("CIRCLE_BRANCH") != null
+}
+

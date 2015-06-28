@@ -1,0 +1,3 @@
+include 'hopscotch-web'
+
+rootProject.name='hopscotch'
