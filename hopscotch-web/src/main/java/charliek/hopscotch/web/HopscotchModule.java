@@ -13,5 +13,8 @@ public class HopscotchModule extends AbstractModule {
 
 		bind(TimedHandler.class).in(Scopes.SINGLETON);
 		bind(ApiHandlerDecorator.class).in(Scopes.SINGLETON);
+
+		// Adding doesn't change the behavior anything
+		// Multibinder.newSetBinder(binder(), HandlerDecorator.class).addBinding().to(ApiHandlerDecorator.class);
 	}
 }

@@ -11,6 +11,7 @@ public class ApiHandlerDecorator implements HandlerDecorator {
 	public Handler decorate(Registry serverRegistry, Handler rest) throws Exception {
 		return Handlers.chain(rest, Handlers.chain(serverRegistry, c -> {
 			c.get("api/timed", TimedHandler.class);
+			// Add other api endpoints here
 		}));
 	}
 }

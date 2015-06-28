@@ -18,7 +18,7 @@ public class HopscotchApp {
 			d.sysProps();
 		});
 
-		ServerConfig.Builder serverConfig = ServerConfig.findBaseDirProps().sysProps().env();
+		ServerConfig.Builder serverConfig = ServerConfig.findBaseDir().sysProps().env();
 
 		RatpackServer.start(spec -> {
 			spec.serverConfig(serverConfig);
